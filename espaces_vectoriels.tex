@@ -1,0 +1,141 @@
+  
+\chapter{Espaces Vectoriels}
+\minitoc
+
+  \section{Compléments de cours}
+ 
+\subsection{Supplémentaires d'un sous-espace}
+\subsubsection{Théorème de la base incomplète}
+\begin{theo} 
+	Soient \( L \) une famille libre et \( G \) une famille génératrice de \( E \), espace vectoriel de dimension finie. \\
+	Alors il existe une base \( \mathcal{B} \) de \( E \) telle que : \( L \subset \mathcal{B} \subset L \cup G \) \textit{(autrement dit, on peut compléter \( L \) à l’aide de vecteurs de \( G \) pour obtenir une base)}. \\
+	On en déduit que tout espace vectoriel de dimension finie \( E \) possède (au moins) une base (dans le cas où \( E = \{0\} \), on peut convenir qu’une base de \( E \) est \( \emptyset \)). 
+\end{theo}
+Les vecteurs complétant $L$ en base génère un espace supplémentaire à $L$.
+Il est important de noter qu'un supplémentaire d'un sous-espace vectoriel n'est pas unique en général. Le résultat ci-dessous est une version forte dy théorème de la base incomplète qui prouve qu'on peut au moins compléter $L$ de deux façons.
+\vspace{0.5cm}
+
+\begin{res}
+	Soit \( V \) un espace vectoriel de dimension \( n \), et \( F, G \) deux sous-espaces vectoriels de \( V \) de même dimension \( q \).
+	 \emph{Alors \( F \) et \( G \) ont un supplémentaire commun.}
+	 \end{res}
+\begin{solution}
+	\begin{itemize}
+		\item \textbf{Premier cas} : \( F \cap G = \{0\} \)
+		
+		Dans ce cas, on a
+		\[
+		F + G = F \oplus G.
+		\]
+		
+		Soient
+		\[
+		(a_1, a_2, \dots, a_q) \text{ une base de } F,
+		\]  
+		\[
+		(b_1, b_2, \dots, b_q) \text{ une base de } G.
+		\]
+ 		
+		Alors
+		\[
+		\mathcal{B} = (a_1, \dots, a_q, b_1, \dots, b_q)
+		\]
+		est une base de \( F \oplus G \).
+		
+		Posons
+		\[
+		c_k = a_k + b_k, \quad 1 \leq k \leq q,
+		\]
+		et définissons
+		\[
+		W_3 = \mathrm{Vect}(c_1, c_2, \dots, c_q).
+		\]
+		
+		Considérons la matrice de passage par rapport à la base \( \mathcal{B} \) :
+		\[
+		\mathrm{mat}_{\mathcal{B}}(a_1, \dots, a_q, c_1, \dots, c_q)
+		= 
+		\begin{pmatrix}
+			I_q & I_q \\
+			0 & I_q
+		\end{pmatrix} \in GL_{2q}(K).
+		\]
+		
+		Cela montre que
+		\[
+		\mathcal{B}' = (a_1, \dots, a_q, c_1, \dots, c_q)
+		\]
+		est une base de \( F \oplus W_3 \), et donc
+		\[
+		F \oplus G = F \oplus W_3.
+		\]
+		
+		De manière similaire,
+		\[
+		\mathrm{mat}_{\mathcal{B}}(b_1, \dots, b_q, c_1, \dots, c_q)
+		= 
+		\begin{pmatrix}
+			0 & I_q \\
+			I_q & I_q
+		\end{pmatrix} \in GL_{2q}(K),
+		\]
+		donc
+		\[
+		\mathcal{B}'' = (b_1, \dots, b_q, c_1, \dots, c_q)
+		\]
+		est une base de \( G \oplus W_3 \), et
+		\[
+		F \oplus G = G \oplus W_3.
+		\]
+		
+		Ainsi, \( W_3 \) est un supplémentaire commun de \( F \) et \( G \) dans \( F \oplus G \).
+		
+		En introduisant un supplémentaire \( W_4 \) de \( F \oplus G \) dans \( V \), on a
+		\[
+		V = F \oplus G \oplus W_4,
+		\]
+		et donc
+		\[
+		V = F \oplus (W_3 \oplus W_4) = G \oplus (W_3 \oplus W_4).
+		\]
+		
+		\item \textbf{Second cas} : \( F \cap G \neq \{0\} \)
+		
+		On peut écrire
+		\[
+		F = (F \cap G) \oplus F'_1,
+		\]
+		\[
+		G = (F \cap G) \oplus G'_2.
+		\]
+		
+		On a alors 
+		\[
+		F'_1 \cap G'_2 = \{0\}.
+		\]
+		
+		D'après le premier cas, il existe un sous-espace \( W'_3 \) tel que
+		\[
+		F'_1 \oplus G'_2 = F'_1 \oplus W'_3 = G'_2 \oplus W'_3.
+		\]
+		
+		On en déduit que :
+		\[
+		F + G = (F \cap G) \oplus F'_1 \oplus G'_2,
+		\]
+		\[
+		F + G = (F \cap G) \oplus F'_1 \oplus W'_3 = F \oplus W'_3,
+		\]
+		\[
+		F + G = (F \cap G) \oplus G'_2 \oplus W'_3 = G \oplus W'_3.
+		\]
+		
+		Enfin, si \( W_4 \) est un supplémentaire de \( F + G \) dans \( V \), on a comme dans le premier cas :
+		\[
+		V = F \oplus (W'_3 \oplus W_4) = G \oplus (W'_3 \oplus W_4).
+		\]
+		
+		Cela conclut la démonstration.
+		
+	\end{itemize}
+\end{solution}  

@@ -1,0 +1,260 @@
+ \documentclass[a4paper,12pt,oneside]{book}
+
+% =============================================================================
+% ENCODING AND LANGUAGE
+% =============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{minitoc}
+ 
+  
+ 
+% =============================================================================
+% FONTS AND TYPOGRAPHY
+% =============================================================================
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% =============================================================================
+% PAGE LAYOUT AND GEOMETRY
+% =============================================================================
+\usepackage{geometry}
+\geometry{
+	top=2.5cm,
+	bottom=2.5cm,
+	left=2.5cm,
+	right=2.5cm,
+	headheight=15pt
+}
+
+% =============================================================================
+% GRAPHICS AND COLORS
+% =============================================================================
+\usepackage{graphicx}
+\usepackage{xcolor}
+\newcommand{\hl}[1]{%
+	\colorbox{yellow!50}{#1}%
+}
+% =============================================================================
+% MATHEMATICS
+% =============================================================================
+\usepackage{amsmath, amssymb}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+
+% =============================================================================
+% BOXES AND ENVIRONMENTS
+% =============================================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% =============================================================================
+% HEADERS AND FOOTERS
+% =============================================================================
+\usepackage{fancyhdr}
+
+% =============================================================================
+% HYPERLINKS
+% =============================================================================
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+	citecolor=blue,
+	bookmarksdepth=3,
+	pdfhighlight=/I,
+	pdftitle={Gaya Math},
+	pdfauthor={SoG},
+	pdfsubject={Mathématiques},
+	pdfkeywords={mathématiques, algèbre, analyse}
+}
+
+% =============================================================================
+% SYMBOLS AND DECORATIONS
+% =============================================================================
+\usepackage{pifont}
+
+% =============================================================================
+% CUSTOM MATHEMATICAL COMMANDS
+% =============================================================================
+
+% Fields and number sets
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+% Linear algebra
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\Imf}{\mathrm{Im}}
+\newcommand{\Com}{\mathrm{Com}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Vect}{\mathrm{Vect}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\rg}{\mathrm{rg}}
+
+% Number theory
+\newcommand{\pgcd}{\mathrm{pgcd}}
+\newcommand{\ppcm}{\mathrm{ppcm}}
+
+% Matrix spaces
+\newcommand{\Mn}{\mathcal{M}_n(\K)}
+\newcommand{\MnC}{\mathcal{M}_n(\C)}
+
+% Characteristic polynomials
+\newcommand{\chiA}{\chi_A}
+\newcommand{\muA}{\mu_A}
+\newcommand{\PiA}{\Pi_A}
+
+% Proof end symbol
+\newcommand{\qed}{\hfill$\square$}
+
+% =============================================================================
+% PAGE STYLE CONFIGURATION
+% =============================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{\hyperref[sec:sommaire]{\small Retour au sommaire}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% =============================================================================
+% TCOLORBOX STYLES
+% =============================================================================
+
+% Base style for all boxes
+\tcbset{
+	basestyle/.style={
+		enhanced,
+		breakable,
+		arc=3pt,
+		outer arc=0pt,
+		left=12pt,
+		right=12pt,
+		top=8pt,
+		bottom=8pt,
+		boxsep=5pt,
+		width=\linewidth,
+		halign=justify,
+		fonttitle=\bfseries,
+		before skip=12pt,
+		after skip=12pt,
+	}
+}
+
+% Statement box
+\newtcolorbox{statementbox}[1][]{%
+	basestyle,
+	colback=gray!8,
+	colframe=gray!60!black,
+	title={\textbf{Énoncé}},
+	title after break={\textbf{Énoncé (suite)}},
+	#1
+}
+
+% Solution box
+\newtcolorbox{solutionbox}[1][]{%
+	basestyle,
+	colback=blue!8,
+	colframe=blue!60!black,
+	title={\textbf{Solution}},
+	title after break={\textbf{Solution (suite)}},
+	#1
+}
+
+% Technique box
+\newtcolorbox{techniquebox}[1][]{%
+	basestyle,
+	colback=yellow!12,
+	colframe=orange!70!black,
+	title={\textbf{Technique à mémoriser}},
+	title after break={\textbf{Technique à mémoriser (suite)}},
+	#1
+}
+
+% Formula box
+\newtcolorbox{theobox}[1][]{%
+	basestyle,
+	colback=orange!12,
+	colframe=orange!60!black,
+	title={\textbf{Théorème}},
+	title after break={\textbf{Théorème (suite)}},
+	#1
+}
+  
+% Formula box
+\newtcolorbox{formbox}[1][]{%
+	basestyle,
+	colback=green!12,
+	colframe=green!60!black,
+	title={\textbf{Formulaire}},
+	title after break={\textbf{Formulaire (suite)}},
+	#1
+}
+
+% Formula box
+\newtcolorbox{resbox}[1][]{%
+	basestyle,
+	colback=cyan!12,
+	colframe=cyan!60!black,
+	title={\textbf{Résultat Important}},
+	title after break={\textbf{Résultat Important (Suite) (suite)}},
+	#1
+}
+   
+% =============================================================================
+% SIMPLIFIED ENVIRONMENTS
+% =============================================================================
+\renewcommand{\thesection}{\Roman{section}}   
+\newenvironment{statement}{\begin{statementbox}}{\end{statementbox}}
+\newenvironment{solution}{\begin{solutionbox}}{\end{solutionbox}}
+\newenvironment{technique}{\begin{techniquebox}}{\end{techniquebox}}
+\newenvironment{form}{\begin{formbox}}{\end{formbox}}
+\newenvironment{res}{\begin{resbox}}{\end{resbox}}
+\newenvironment{theo}{\begin{theobox}}{\end{theobox}}
+\usepackage{tocloft}
+\renewcommand{\cftsecfont}{\itshape}
+\renewcommand{\cftsecpagefont}{\itshape}    
+
+% =============================================================================
+% DOCUMENT CONTENT
+%   =============================================================================
+\begin{document}
+	
+	% Document metadata
+	\author{SoG}
+	\title{Gaya Math}
+	\date{Juillet 2025}
+	
+	% Front matter
+	\frontmatter
+	\maketitle
+	
+	% Table of contents configuration
+ 	   \dominitoc 
+ 	   \setcounter{tocdepth}{0 }
+ 	   \tableofcontents  
+ 	   \setcounter{secnumdepth}{3}
+ 	   
+ 	  
+	\label{sec:sommaire}              
+	
+	% Main con   tent
+	\mainmatter
+
+          
+	 \include{./espaces_vectoriels.tex} 
+	
+	% Back matter
+	\backmatter
+	% Bibliography, glossary and index would go here
+	
+    \end{document}
